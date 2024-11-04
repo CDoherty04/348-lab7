@@ -38,16 +38,32 @@ public:
     // 3. Add two matrices (operator overloading for +)
     Matrix operator+(const Matrix& other) const {
         Matrix result;
+        
         for (int i = 0; i < SIZE; ++i) {
             for (int j = 0; j < SIZE; ++j) {
                 result.data[i][j] = this->data[i][j] + other.data[i][j];
             }
         }
+
         return result;
     }
 
     // 4. Multiply two matrices (operator overloading for *)
-    // Matrix operator*(const Matrix& other) const;
+     Matrix operator*(const Matrix& other) const {
+        Matrix result;
+        
+        for (int i = 0; i < SIZE; ++i) {
+            for (int j = 0; j < SIZE; ++j) {
+                result.data[i][j] = 0;
+                for (int k = 0; k < SIZE; ++k) {
+                    result.data[i][j] += this->data[i][k] * other.data[k][j];
+                }
+            }
+        }
+
+        return result;
+    }
+
     // 5. Compute the sum of matrix diagonal elements
     // int sumOfDiagonals() const;
     // 6. Swap matrix rows
@@ -72,9 +88,9 @@ int main() {
     cout << "\nSum of matrices:" << endl;
     sum.display();
 
-    // Matrix product = mat1 * mat2;
-    // cout << "\nProduct of matrices:" << endl;
-    // product.display();
+    Matrix product = mat1 * mat2;
+    cout << "\nProduct of matrices:" << endl;
+    product.display();
     
     // cout << "\nSum of diagonals of Matrix 1: " << mat1.sumOfDiagonals() << endl;
 
