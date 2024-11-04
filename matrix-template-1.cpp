@@ -13,7 +13,8 @@ public:
     // 1. Read values from stdin into a matrix
     void readFromStdin() {
         
-        char filename[] = "matrix-data.txt";
+        char filename[] = "";
+        cin >> filename;
         ifstream file(filename);
 
         for (int i = 0; i < SIZE; ++i) {
@@ -47,15 +48,16 @@ public:
 int main() {
     // Example usage:
     Matrix mat1;
+    cout << "\nEnter filename for Matrix 1:" << endl;
     mat1.readFromStdin();
-    cout << "Matrix 1:" << endl;
+    cout << "\nMatrix 1:" << endl;
     mat1.display();
 
-    // Matrix mat2;
-    // cout << "Enter values for Matrix 2:" << endl;
-    // mat2.readFromStdin();
-    // cout << "Matrix 2:" << endl;
-    // mat2.display();
+    Matrix mat2;
+    cout << "\nEnter filename for Matrix 2:" << endl;
+    mat2.readFromStdin();
+    cout << "\nMatrix 2:" << endl;
+    mat2.display();
 
     // Matrix sum = mat1 + mat2;
     // cout << "Sum of matrices:" << endl;
