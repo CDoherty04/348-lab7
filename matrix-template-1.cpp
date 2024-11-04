@@ -96,7 +96,7 @@ public:
     void swapRows(int row1, int row2)
     {
         if (row1 == row2) {
-            cout << "Same row can't be swapped" << endl;
+            cout << "\nSame row can't be swapped... Printing matrix anyway" << endl;
         }
         else if (row1 >= 0 && row1 < SIZE && row2 >= 0 && row2 < SIZE)
         {
@@ -155,7 +155,7 @@ int main()
     // Get row 2 input
     while (1)
     {
-        cout << "Enter row two index to switch:\n";
+        cout << "\nEnter row two index to switch:\n";
         cin >> row2;
         if (row2 >= 0 && row2 < SIZE) {
             break;
