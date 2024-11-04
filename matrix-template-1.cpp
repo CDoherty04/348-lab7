@@ -93,7 +93,24 @@ public:
     };
 
     // 6. Swap matrix rows
-    // void swapRows(int row1, int row2);
+    void swapRows(int row1, int row2)
+    {
+        if (row1 == row2) {
+            cout << "Same row can't be swapped" << endl;
+        }
+        else if (row1 >= 0 && row1 < SIZE && row2 >= 0 && row2 < SIZE)
+        {
+            for (int j = 0; j < SIZE; ++j)
+            {
+                swap(data[row1][j], data[row2][j]);
+            }
+            cout << "\nMatrix after swapping rows:" << endl;
+        }
+        else
+        {
+            cerr << "Invalid row indices: " << row1 << " and " << row2 << endl;
+        }
+    };
 };
 
 int main()
@@ -121,9 +138,35 @@ int main()
 
     cout << "\nSum of diagonals of Matrix 1: " << mat1.sumOfDiagonals() << endl;
 
-    // mat1.swapRows(0, 2);
-    // cout << "\nMatrix 1 after swapping rows:" << endl;
-    // mat1.display();
+    int row1, row2;
+    // Get row 1 input
+    while (1)
+    {
+        cout << "\nEnter row one index to switch:\n";
+        cin >> row1;
+        if (row1 >= 0 && row1 < SIZE) {
+            break;
+        }
+        else {
+            cout << "Enter a valid row\n";
+        }
+    }
+
+    // Get row 2 input
+    while (1)
+    {
+        cout << "Enter row two index to switch:\n";
+        cin >> row2;
+        if (row2 >= 0 && row2 < SIZE) {
+            break;
+        }
+        else {
+            cout << "Enter a valid row\n";
+        }
+    }
+    
+    mat1.swapRows(row1, row2);
+    mat1.display();
 
     return 0;
 }
