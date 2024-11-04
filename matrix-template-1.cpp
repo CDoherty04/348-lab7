@@ -5,20 +5,24 @@ using namespace std;
 
 const int SIZE = 4; // Global variable for matrix size
 
-class Matrix {
+class Matrix
+{
 private:
     int data[SIZE][SIZE]; // 2D array for matrix data (using int for simplicity)
 
 public:
     // 1. Read values from stdin into a matrix
-    void readFromStdin() {
-        
+    void readFromStdin()
+    {
+
         char filename[] = "";
         cin >> filename;
         ifstream file(filename);
 
-        for (int i = 0; i < SIZE; ++i) {
-            for (int j = 0; j < SIZE; ++j) {
+        for (int i = 0; i < SIZE; ++i)
+        {
+            for (int j = 0; j < SIZE; ++j)
+            {
                 file >> data[i][j];
             }
         }
@@ -26,21 +30,27 @@ public:
     };
 
     // 2. Display a matrix
-    void display() const {
-        for (int i = 0; i < SIZE; ++i) {
-            for (int j = 0; j < SIZE; ++j) {
+    void display() const
+    {
+        for (int i = 0; i < SIZE; ++i)
+        {
+            for (int j = 0; j < SIZE; ++j)
+            {
                 cout << data[i][j] << " ";
             }
             cout << endl;
         }
     };
-    
+
     // 3. Add two matrices (operator overloading for +)
-    Matrix operator+(const Matrix& other) const {
+    Matrix operator+(const Matrix &other) const
+    {
         Matrix result;
-        
-        for (int i = 0; i < SIZE; ++i) {
-            for (int j = 0; j < SIZE; ++j) {
+
+        for (int i = 0; i < SIZE; ++i)
+        {
+            for (int j = 0; j < SIZE; ++j)
+            {
                 result.data[i][j] = this->data[i][j] + other.data[i][j];
             }
         }
@@ -49,13 +59,17 @@ public:
     }
 
     // 4. Multiply two matrices (operator overloading for *)
-     Matrix operator*(const Matrix& other) const {
+    Matrix operator*(const Matrix &other) const
+    {
         Matrix result;
-        
-        for (int i = 0; i < SIZE; ++i) {
-            for (int j = 0; j < SIZE; ++j) {
+
+        for (int i = 0; i < SIZE; ++i)
+        {
+            for (int j = 0; j < SIZE; ++j)
+            {
                 result.data[i][j] = 0;
-                for (int k = 0; k < SIZE; ++k) {
+                for (int k = 0; k < SIZE; ++k)
+                {
                     result.data[i][j] += this->data[i][k] * other.data[k][j];
                 }
             }
@@ -65,12 +79,25 @@ public:
     }
 
     // 5. Compute the sum of matrix diagonal elements
-    // int sumOfDiagonals() const;
+    int sumOfDiagonals() const
+    {
+        int sum = 0;
+        for (int i = 0; i < SIZE; ++i)
+        {
+            sum += data[i][i];
+            // Don't count something twice
+            if (i != SIZE - i - 1)
+                sum += data[i][SIZE - i - 1];
+        }
+        return sum;
+    };
+
     // 6. Swap matrix rows
     // void swapRows(int row1, int row2);
 };
 
-int main() {
+int main()
+{
     // Example usage:
     Matrix mat1;
     cout << "\nEnter filename for Matrix 1:" << endl;
@@ -91,8 +118,8 @@ int main() {
     Matrix product = mat1 * mat2;
     cout << "\nProduct of matrices:" << endl;
     product.display();
-    
-    // cout << "\nSum of diagonals of Matrix 1: " << mat1.sumOfDiagonals() << endl;
+
+    cout << "\nSum of diagonals of Matrix 1: " << mat1.sumOfDiagonals() << endl;
 
     // mat1.swapRows(0, 2);
     // cout << "\nMatrix 1 after swapping rows:" << endl;
